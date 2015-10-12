@@ -1,12 +1,16 @@
 <?php
 
-   require_once("edit_functios.php")
+   require_once("edit_functions.php");
    
-   if(isset($_GET["edit.id"])){
+   if(isset($_GET["update"])){
+      updateCarData($_GET["car_id"], $_GET["number_plate"], $_GET["color"]);
+	} 
+ 
+   if(isset($_GET["edit_id"])){
 	//trükin aadressirealt muutuja   
- <th>Edit</th>
-   echo $_GET["edit.id"]
+     echo $_GET["edit_id"];
     
+ 
 	
 	// //küsin andmed 
     $car = getSingleCarData($_GET["edit_id"]); 
@@ -15,16 +19,16 @@
 
     }else{ 
 	//kui muutujat ei ole (siis ei ole mõtet siia tulla)
-	header("Location .php")
+	header("Location table.php");
 	
 	
 	}
 ?> 
 <!-- Salvestamiseks kasutan table.php rida 15, updateCar() -->
- <form action=table.php method="get">
- <input type="car_id" type="hidden" value="<?=$_GET["edit_id"];?>">
- <input name="car_plate" type="text" value="<?=$car->number_plate;?>"><br>
- <input name="color" type="text" value="<?=$car->color;?>"><br>
- <input name="update" type="submit" >
+ <form action=edit.php method="get">
+  <input type="car_id" type="hidden" value="<?=$_GET["edit_id"];?>">
+  <input name="number_plate" type="text" value="<?=$car->number_plate;?>"><br>
+  <input name="color" type="text" value="<?=$car->color;?>"><br>
+  <input name="update" type="submit" >
  
 </form>
